@@ -1,3 +1,5 @@
+package mastermindGame;
+
 public class PiecesAlgorithm {
     private String secretCode;
     private String userGuess;
@@ -22,7 +24,6 @@ public class PiecesAlgorithm {
                 }
             }
         }
-        System.out.println("Correct Numbers: " + correctN);
-        System.out.println("Misplaced Numbers: " + misplacedN);
+        System.out.println("Correct Numbers: " + correctN + "\nMisplaced Numbers: " + misplacedN);
     }
 }

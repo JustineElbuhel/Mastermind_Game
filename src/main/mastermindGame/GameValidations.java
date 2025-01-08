@@ -1,3 +1,5 @@
+package mastermindGame;
+
 import java.util.Scanner;
 
 public class GameValidations {
