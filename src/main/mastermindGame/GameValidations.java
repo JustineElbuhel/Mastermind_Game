@@ -21,4 +21,15 @@ public class GameValidations {
         }
         return userGuess;
     }
+
+    public Boolean validateSecretCodeArg(String providedCode){
+        if(providedCode.matches(".*[a-zA-Z].*") || providedCode.length() != 4){
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean validateMaxRoundsArg(String providedNum){
+        return !providedNum.matches(".*[a-zA-Z].*");
+    }
 }

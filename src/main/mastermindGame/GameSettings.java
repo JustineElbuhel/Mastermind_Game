@@ -49,10 +49,16 @@ public class GameSettings {
     }
 
     public void setSecretCode(String[] args){
+        GameValidations gameValidations = new GameValidations();
         for(int i = 0; i < args.length; i++){
             if(args[i].equals("-c") && (i+1) < args.length){
-                this.secretCode = args[i + 1];
-                break;
+                if(gameValidations.validateSecretCodeArg(args[i+1])) {
+                    this.secretCode = args[i + 1];
+                    break;
+                } else {
+                    System.out.println("123Incorrect format for setting secret code. Random code will be generated");
+                    this.secretCode = getSecretCode();
+                }
             }
         }
     }
@@ -62,10 +68,16 @@ public class GameSettings {
     }
 
     public void setMaxRounds(String[] args){
+        GameValidations gameValidations = new GameValidations();
         for(int i = 0; i < args.length; i++){
             if(args[i].equals("-r") && (i+1) < args.length){
-                this.maxRounds = Integer.parseInt(args[i + 1]);
-                break;
+                if(gameValidations.validateMaxRoundsArg(args[i+1])) {
+                    this.maxRounds = Integer.parseInt(args[i + 1]);
+                    break;
+                } else {
+                    System.out.println("Incorrect format for setting max rounds. Setting max rounds to 10.");
+                    this.maxRounds = 10;
+                }
             }
         }
     }
