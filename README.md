@@ -20,6 +20,10 @@ misplaced. The game continues until the player correctly guesses the number comb
 
 ## Installing the Game
 
+
+https://github.com/user-attachments/assets/fab63a65-efab-4f94-8902-41b391b857db
+
+
 ### Prerequisites
 
 To operate this game, the user must have access to a CLI (Command Line Interface).
