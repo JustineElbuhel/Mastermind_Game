@@ -20,14 +20,16 @@ public class GamePlay {
         System.out.println("Good luck!");
 
         while(roundN <= maxRounds){
+            int remainingRounds = (maxRounds + 1) - roundN;
             System.out.println("*********************");
-            System.out.println("Round " + (roundN));
+            System.out.println("Round " + (roundN) + "   (Remaining rounds: " + remainingRounds + ")");
             System.out.print("Enter guess: ");
 
             String userGuessInput = scanner.nextLine();
             GameValidations gameValidations = new GameValidations();
             userGuessInput = gameValidations.checkUserInput(userGuessInput);
-            if(secretCode.equals(userGuessInput)){
+
+            if(secretCode.trim().equals(userGuessInput.trim())){
                 System.out.println("*****************************************************************");
                 System.out.println("Congrats! You guessed the secret code!");
                 System.out.println("*****************************************************************");

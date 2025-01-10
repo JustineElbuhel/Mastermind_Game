@@ -5,6 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
+import java.util.Random;
 
 public class GameSettings {
     private String secretCode;
@@ -28,27 +29,40 @@ public class GameSettings {
 
     public void generateSecretCode() throws Exception{
         String secretCode = "";
-        HttpRequest request2 = HttpRequest.newBuilder()
-                .uri(new URI("https://www.random.org/integers/?num=1&min=0&max=9999&col=1&base=10&format=plain&rnd=new"))
-                .header("Authorization","Bearer 07abd06f-08da-49a0-9def-533cb631e501")
-                .GET()
-                .build();
+        for (int i = 0; i < 4; i++) {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI("https://www.random.org/integers/?num=1&min=0&max=7&col=1&base=10&format=plain&rnd=new"))
+                    .header("Authorization", "Bearer 07abd06f-08da-49a0-9def-533cb631e501")
+                    .GET()
+                    .build();
 
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request2, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = HttpClient.newHttpClient()
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
-        if(response.statusCode() == 200) {
-            secretCode = response.body();
-        } else if(response.statusCode() == 503){
-            while(secretCode.length() < 4){
-                int randomN = (int)(Math.random() * 7) +1;
-                secretCode += randomN;
+            if (response.statusCode() == 200) {
+                secretCode += response.body().trim();
+            } else if (response.statusCode() == 503) {
+                secretCode = "";
+                secretCode = generateSecretCode2(secretCode);
+                break;
             }
+            Thread.sleep(1000);
         }
         this.secretCode = secretCode;
     }
 
-    public void setSecretCode(String[] args){
+    public String generateSecretCode2(String secretCode){
+        Random random = new Random();
+        secretCode = "";
+
+        for(int i = 0; i < 4 ; i++){
+            int randomN = random.nextInt(8);
+            secretCode += randomN;
+        }
+        return secretCode;
+    }
+
+    public void setSecretCode(String[] args) throws Exception {
         GameValidations gameValidations = new GameValidations();
         for(int i = 0; i < args.length; i++){
             if(args[i].equals("-c") && (i+1) < args.length){
@@ -56,8 +70,8 @@ public class GameSettings {
                     this.secretCode = args[i + 1];
                     break;
                 } else {
-                    System.out.println("123Incorrect format for setting secret code. Random code will be generated");
-                    this.secretCode = getSecretCode();
+                    System.out.println("Incorrect format for setting secret code. Random code will be generated");
+                    generateSecretCode();
                 }
             }
         }
