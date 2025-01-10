@@ -21,7 +21,7 @@ public class GamePlay {
      */
     public void start(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to My MastermindGame.Mastermind");
+        System.out.println("Welcome to my Mastermind");
         System.out.println("You have " + maxRounds + " chances to guess the secret code.");
         System.out.println("Good luck!");
 

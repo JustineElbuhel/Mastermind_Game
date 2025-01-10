@@ -9,6 +9,7 @@ public class Mastermind {
         gameSettings.startSettings(args);
 
         String secretCode = gameSettings.getSecretCode();
+        System.out.println(secretCode);
         int maxRounds =  gameSettings.getMaxRounds();
 
         GamePlay gamePlay = new GamePlay(secretCode, maxRounds);
