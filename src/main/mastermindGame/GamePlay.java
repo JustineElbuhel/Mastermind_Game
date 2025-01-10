@@ -2,6 +2,9 @@ package mastermindGame;
 
 import java.util.Scanner;
 
+/**
+ * @class GamePlay - Handles the CLI and game logic
+ */
 public class GamePlay {
     private String secretCode;
     private int maxRounds;
@@ -13,6 +16,9 @@ public class GamePlay {
         this.roundN = 1;
     }
 
+    /**
+     * @method start - Runs the game once a secret code and the max amount of rounds is set.
+     */
     public void start(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to My MastermindGame.Mastermind");

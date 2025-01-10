@@ -50,6 +50,18 @@ class GamePlayTest {
     }
 
     @Test
+    void startAllIncorrectGuessTest(){
+        String simulatedInput = "0000";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+
+        PiecesAlgorithm piecesAlgorithm = new PiecesAlgorithm("1234", "0000");
+        piecesAlgorithm.checkPieces("1234", "0000");
+
+        String output = new String(outContent.toByteArray());
+        assertTrue(output.contains("All pieces are incorrect."));
+    }
+
+    @Test
     void noMoreRoundsTest(){
         String simulatedInput = "1233\n1233\n1233";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));

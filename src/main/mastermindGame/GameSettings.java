@@ -15,6 +15,11 @@ public class GameSettings {
         this.maxRounds = 10;
     }
 
+    /**
+     * @method startSettings - Checks to see if the user input a potential secret code and max amount of rounds for the game or not, the calls the correct functions accordingly.
+     * @param args - user input into terminal for setting the games secret code and max amount of rounds.
+     * @throws Exception
+     */
     public void startSettings(String[] args) throws Exception {
         if(Arrays.asList(args).contains("-c")){
             setSecretCode(args);
@@ -27,6 +32,10 @@ public class GameSettings {
         }
     }
 
+    /**
+     * @method generateSecretCode - Calls the random integer API to generate 4 digits that will be concatenated into String secretCode. If a http response of 503 occurs, the program will set String secretCode = "" then generate a random 4-digit number.
+     * @throws Exception
+     */
     public void generateSecretCode() throws Exception{
         String secretCode = "";
         for (int i = 0; i < 4; i++) {
@@ -51,6 +60,11 @@ public class GameSettings {
         this.secretCode = secretCode;
     }
 
+    /**
+     * @method generateSecretCode2 If the applications fails to call the Random Int API, this function will be called to generate a random 4-digit secret code
+     * @param secretCode Empty string that will have 4 numbers concatenated
+     * @return secretCode - The secret code that the player will be trying toi guess
+     */
     public String generateSecretCode2(String secretCode){
         Random random = new Random();
         secretCode = "";
@@ -62,6 +76,10 @@ public class GameSettings {
         return secretCode;
     }
 
+    /**
+     * Checks to see if a user inputs a 4-digit number to set as the secret code, if input is not a 4-digit number, a random secret code will be generated.
+     * @param args - User inputs into terminal
+     */
     public void setSecretCode(String[] args) throws Exception {
         GameValidations gameValidations = new GameValidations();
         for(int i = 0; i < args.length; i++){
@@ -77,10 +95,17 @@ public class GameSettings {
         }
     }
 
+    /**
+     * @return The secret code the player is trying to guess
+     */
     public String getSecretCode(){
         return this.secretCode;
     }
 
+    /**
+     * Checks to see if a user inputs a number to set as the max amount of rounds per game, if input is not a valid number max rounds will be set to 10.
+     * @param args - User inputs into terminal
+     */
     public void setMaxRounds(String[] args){
         GameValidations gameValidations = new GameValidations();
         for(int i = 0; i < args.length; i++){
@@ -96,6 +121,9 @@ public class GameSettings {
         }
     }
 
+    /**
+     * @return The max amount of rounds per game
+     */
     public int getMaxRounds(){
         return this.maxRounds;
     }
