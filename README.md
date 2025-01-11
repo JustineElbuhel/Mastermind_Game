@@ -68,7 +68,7 @@ version can be played by entering the command below into the CLI. After the comm
 ```
 java mastermindGame.Mastermind
 ```
-2. The game can take a secret code and the number of chances a player will have per game if provided into the CLI. 
+2. Otherwise, the game can take a secret code and the number of chances a player will have per game if provided into the CLI. 
    * To set a secret code: Into the terminal command above you will add "-c {secretCode}"
    * To set the amount of chances to guess the code: Into the command above you will add "-r {maxRounds}"
 
